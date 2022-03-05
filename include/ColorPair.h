@@ -29,6 +29,7 @@ class ColorPair {
         QString getid() const;
         QColor get_m_color1() const;
         QColor get_m_color2() const; 
+        ColorPair &operator=(const ColorPair &cp1);
 };
 
 QString toRGBA(const QColor &color);
@@ -51,7 +52,7 @@ class ColorPairSet {
         using SetType = std::set<ColorPair,CompareColorPair>;
 
         ColorPairSet();
-        SetType &set();
+        SetType &set(int x);
         void add_in_set(ColorPair &cp);
 
     private:
@@ -70,7 +71,7 @@ class XMLReader {
         XMLReader();
         void read(const QString &filename);
         void read_xml(QDomElement elem);
-        void set_cps();
+        void set_cps(int x);
 };
 
 

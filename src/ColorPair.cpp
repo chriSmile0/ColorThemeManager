@@ -44,6 +44,13 @@ QColor ColorPair::get_m_color2() const {
     return m_color2;
 }
 
+ColorPair &ColorPair::operator=(const ColorPair &cp1){
+    m_id = cp1.getid();
+    m_color1 = cp1.get_m_color1();
+    m_color2 = cp1.get_m_color2();
+    return *this;
+}
+
 CompareColorPair::CompareColorPair() {}
 
 bool CompareColorPair::operator()(const ColorPair& cp1,const ColorPair &cp2) {
@@ -55,12 +62,21 @@ bool CompareColorPair::operator()(const ColorPair& cp1,const ColorPair &cp2) {
 
 ColorPairSet::ColorPairSet() {}
 
-ColorPairSet::SetType &ColorPairSet::set() {
+ColorPairSet::SetType &ColorPairSet::set(int x) {
     //parcours du set moderne
-    for(const ColorPair &cp : m_set) {
-        qDebug() << cp.getid();
-        qDebug() << cp.get_m_color1();
-        qDebug() << cp.get_m_color2();
+    if (x == 2) {
+        for(const ColorPair &cp : m_set) {
+            cout << cp.getid().toStdString() << endl;
+            cout << toRGBA(cp.get_m_color1()).toStdString() << endl;
+            cout  << toRGBA(cp.get_m_color2()).toStdString() << endl;
+        }   
+    }
+    else {
+        for(const ColorPair &cp : m_set) {
+            qDebug() << cp.getid();
+            qDebug() << cp.get_m_color1();
+            qDebug() << cp.get_m_color2();
+        }   
     }
 
     //parcours du set old school
@@ -119,6 +135,6 @@ void XMLReader::read(const QString &filename) {
 }
 
 
-void XMLReader::set_cps() {
-    cps.set();
+void XMLReader::set_cps(int x) {
+    cps.set(x);
 }
