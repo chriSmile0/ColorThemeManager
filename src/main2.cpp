@@ -1,7 +1,7 @@
 #include "../include/ColorPair.h"
 
 
-int main(int argc, char *argv[]) {
+int main() {
     QColor c1 = QColor("White");
     QColor c2 = QColor("Red");
     QColor c3 = QColor("Blue");

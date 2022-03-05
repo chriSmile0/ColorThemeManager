@@ -92,7 +92,7 @@ void XMLReader::read_xml(QDomElement elem) {
         if(Color.tagName() == "color") {
            id = Color.attribute("id");
            color1 = Color.attribute("source");
-           color2 = Color.attribute("target"),
+           color2 = Color.attribute("target");
            cp = ColorPair(id,color1,color2);
         }
         cps.add_in_set(cp);
