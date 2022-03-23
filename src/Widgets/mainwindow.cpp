@@ -4,7 +4,10 @@
 MainWindow::MainWindow(QWidget *parent)
 	:QMainWindow(parent),
 	ui(new Ui::MainWindow)
-{}
+	
+{
+	ui->setupUI(this);
+}
 
 MainWindow::~MainWindow()
 {
