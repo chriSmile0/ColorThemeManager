@@ -20,7 +20,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFormLayout" name="WidgetForm" native="true">
+   <widget class="QWidget" name="WidgetForm" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -1063,7 +1063,7 @@ Précèdente</string>
             <height>411</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout" rowstretch="0,0" columnstretch="0,0,0">
+          <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="0,0,0">
            <property name="sizeConstraint">
             <enum>QLayout::SetDefaultConstraint</enum>
            </property>
@@ -1283,13 +1283,6 @@ Précèdente</string>
    </widget>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QFormLayout</class>
-   <extends>QWidget</extends>
-   <header>qformlayout.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

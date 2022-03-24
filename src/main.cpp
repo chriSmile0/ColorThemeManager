@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include <QApplication>
 #include "ColorPair.h"
 
@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
 	MainWindow w;
-	w.show();
+    w.show();
 	QString str = "1";
 	QColor color1 = "Blue";
 	QColor color2 = "Red";
