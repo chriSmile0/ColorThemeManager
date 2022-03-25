@@ -500,7 +500,7 @@
       </property>
       <layout class="QHBoxLayout" name="General_Actions">
        <item>
-        <widget class="QPushButton" name="pushButton_6">
+        <widget class="QPushButton" name="Import_Color_File">
          <property name="text">
           <string>Importer 
 fichier 
@@ -509,7 +509,7 @@ couleur</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="Calc_Theme">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -526,7 +526,7 @@ Thème</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="Import_Theme">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -540,7 +540,7 @@ Theme</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="Create_Theme">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -554,7 +554,7 @@ Thème</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="Save_Theme">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -568,7 +568,7 @@ Thème</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="Last_Session">
          <property name="text">
           <string>Charger 
 Session 
