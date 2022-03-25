@@ -1,7 +1,6 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "fileexploration.h"
 #include <QMainWindow>
 #include <QMessageBox>
 
