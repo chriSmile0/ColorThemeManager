@@ -1,5 +1,4 @@
 ﻿#include "mainwindow.h"
-#include "fileexploration.h"
 #include "ui_mainwindow.h"
 #include <iostream>
 using namespace std;
