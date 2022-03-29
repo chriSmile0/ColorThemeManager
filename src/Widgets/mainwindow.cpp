@@ -63,7 +63,6 @@ void MainWindow::on_Import_Color_File_clicked()
 		}
 		inputFile.close();
 	}
-	cout << "color in file : " << nb_color << endl;
 	if(nb_color > 0) {// ok on a des couleurs 
 		/*Parser le nom*/
 		int i = filename.length();
@@ -226,7 +225,7 @@ void MainWindow::on_Create_Theme_clicked()
 				QFile::resize("./themes/"+text,0);
 			if(outputFile.open(QIODevice::ReadWrite)) {
 				QTextStream out(&outputFile);
-				out << "<colors>" << endl;
+				out << "<colors>" << Qt::endl;
 				outputFile.close();
 			
 				QDialog *Dbox = new QDialog();
@@ -268,7 +267,7 @@ void MainWindow::on_Create_Theme_clicked()
 						QFile outputFil("./themes/"+text);
 						if(outputFil.open(QIODevice::Append)) {
 							QTextStream oute(&outputFil);
-							oute << create_line_source_target(*src,*tgt,digit-1) << endl;
+							oute << create_line_source_target(*src,*tgt,digit-1) << Qt::endl;
 							outputFil.close();
 						}
 						QString str = "";
@@ -277,7 +276,7 @@ void MainWindow::on_Create_Theme_clicked()
 							Dbox->close();
 							if(outputFil.open(QIODevice::Append)) {
 								QTextStream oute(&outputFil);
-								oute << "</colors>" << endl;
+								oute << "</colors>" << Qt::endl;
 							}
 							outputFil.close();
 						}
@@ -378,10 +377,9 @@ void MainWindow::on_Calc_Theme_clicked()
 	int total_color = 0;
 	if(outputFile.open(QIODevice::ReadWrite)) {
 		QTextStream out(&outputFile);
-		out << "<colors>" << endl;
+		out << "<colors>" << Qt::endl;
 		QList<QString> m_strList = QList<QString>() ;
 		if (inputFile.open(QIODevice::ReadOnly)) {
-			cout << "open" << endl;
 			QTextStream in(&inputFile);
 			while (!in.atEnd()) {
 				QString line = in.readLine();
@@ -414,7 +412,7 @@ void MainWindow::on_Calc_Theme_clicked()
 					}
 				}
 				for(int j = 0 ; j < nb_color ; j++) 
-					out << create_theme_line(m_strList[j],total_color+j+1) << endl;
+					out << create_theme_line(m_strList[j],total_color+j+1) << Qt::endl;
 				total_color += nb_color;
 				m_strList.clear();
 				//Trouver une couleur dans la ligne (attention la ligne ne doit pas être fragmentée (pour le moment ))
@@ -422,7 +420,7 @@ void MainWindow::on_Calc_Theme_clicked()
 			}
 			inputFile.close();
 		}
-		out << "</colors>" << endl;
+		out << "</colors>" << Qt::endl;
 		outputFile.close();
 	}
 
