@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QChar>
+#include <QLabel>
 #include <QInputDialog>
 #include <string.h>
 #include <stdlib.h>
