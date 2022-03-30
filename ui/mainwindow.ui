@@ -173,123 +173,13 @@ Précèdente</string>
       <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,2">
        <item>
         <widget class="QWidget" name="Themes_list" native="true">
-         <layout class="QGridLayout" name="gridLayout" rowstretch="1" columnstretch="0,0">
+         <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="0">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
           </property>
           <property name="leftMargin">
            <number>1</number>
           </property>
-          <item row="0" column="0">
-           <widget class="QWidget" name="th1" native="true">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <layout class="QVBoxLayout" name="th_1" stretch="2,1">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QWidget" name="widget" native="true">
-               <property name="maximumSize">
-                <size>
-                 <width>16666</width>
-                 <height>60</height>
-                </size>
-               </property>
-               <widget class="QPushButton" name="pushButton_2">
-                <property name="geometry">
-                 <rect>
-                  <x>18</x>
-                  <y>5</y>
-                  <width>50</width>
-                  <height>40</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="../MyRes.qrc">
-                  <normaloff>:/images/theme.png</normaloff>:/images/theme.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>32</width>
-                  <height>32</height>
-                 </size>
-                </property>
-               </widget>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>NomTheme</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QWidget" name="th2" native="true">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
-            <layout class="QVBoxLayout" name="th_2" stretch="2,1">
-             <property name="spacing">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QWidget" name="widget_2" native="true">
-               <widget class="QPushButton" name="pushButton">
-                <property name="geometry">
-                 <rect>
-                  <x>18</x>
-                  <y>5</y>
-                  <width>50</width>
-                  <height>40</height>
-                 </rect>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="icon">
-                 <iconset resource="../MyRes.qrc">
-                  <normaloff>:/images/theme.png</normaloff>:/images/theme.png</iconset>
-                </property>
-                <property name="iconSize">
-                 <size>
-                  <width>32</width>
-                  <height>32</height>
-                 </size>
-                </property>
-               </widget>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>NomTheme</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
@@ -338,8 +228,6 @@ Précèdente</string>
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="../MyRes.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

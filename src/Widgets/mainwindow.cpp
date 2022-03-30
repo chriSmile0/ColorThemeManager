@@ -1,4 +1,5 @@
 ﻿#include "mainwindow.h"
+#include "ThemeWidget.h"
 #include "ui_mainwindow.h"
 #include <iostream>
 using namespace std;
@@ -15,39 +16,28 @@ MainWindow::MainWindow(QWidget *parent)
 		direct.mkpath(".");
 	QFileInfoList list = direct.entryInfoList();
 	int nb_files = list.size();
+	cout << nb_files << endl;
+	QList<QString> files_names = QList<QString>() ;
 	for(int i = 2 ; i < nb_files ; i++) {
 		QFileInfo fileInfo = list.at(i);
-		cout << fileInfo.fileName().toStdString() << endl;
+		files_names.append(fileInfo.fileName());
 	}
-	/*Attention a bien tout généraliser et a enlever le code inutile dans ui_mainwindow.h*/
-	QWidget *th3 = new QWidget(ui->Themes_list);
-    th3->setObjectName(QString::fromUtf8("th3"));
-    th3->setMaximumSize(QSize(100, 100));
-	QVBoxLayout *th_3 = new QVBoxLayout(th3);
-	th_3->setSpacing(0);
-	th_3->setObjectName(QString::fromUtf8("th_3"));
-	QWidget *widget_3 = new QWidget(th3);
-	widget_3->setObjectName(QString::fromUtf8("widget_3"));
-	QPushButton *pushButton = new QPushButton(widget_3);
-	pushButton->setObjectName(QString::fromUtf8("pushButton3"));
-	pushButton->setGeometry(QRect(18, 5, 50, 40));
-	QIcon icon3;
-    icon3.addFile(QString::fromUtf8(":/images/theme.png"), QSize(), QIcon::Normal, QIcon::Off);
-	pushButton->setIcon(icon3);
-	pushButton->setIconSize(QSize(32, 32));
-	th_3->addWidget(widget_3);
-	QLabel *label_4 = new QLabel(th3);
-	label_4->setObjectName(QString::fromUtf8("label_4"));
-	label_4->setAlignment(Qt::AlignCenter);
-	label_4->setText(QCoreApplication::translate("MainWindow", "NomTheme", nullptr));
-
-	th_3->addWidget(label_4);
-	th_3->setStretch(0, 2);
-	th_3->setStretch(2, 1);
-
-	ui->gridLayout->addWidget(th3, 1, 1, 1, 1);
-	//ui->horizontalLayout->addWidget(ui->Themes_list);
-
+	int list_size = files_names.size();
+	QString i_inqstr;
+	//5 thèmes par ligne 
+	int row = 0;
+	int column = 0;
+	for(int i = 0 ; i < list_size;i++) {
+		i_inqstr = QString::number(i+2);
+		QWidget *th3 = new QWidget(ui->Themes_list);
+		th3->setObjectName(QString::fromUtf8("th")+i_inqstr);
+		th3->setMaximumSize(QSize(1600, 200));
+		ThemeWidget *w1 = new ThemeWidget(th3);
+		w1->setTh_Widget(files_names[i],i+2);
+		if((i%5 == 0) && (i!=0))
+			row++;
+		ui->gridLayout->addWidget(w1,row,i%5);
+	}
 }
 	
 
@@ -478,6 +468,7 @@ void MainWindow::on_Import_Theme_clicked()
 	QString filename = QFileDialog::getOpenFileName(this,
     tr("Importer Theme"), "/home", tr("Themes Files (*.xml)"));
 	/*Parser le nom*/
+
 	int i = filename.length();
 	QByteArray ba = filename.toLocal8Bit();
   	char *c_str2 = ba.data();
@@ -492,10 +483,30 @@ void MainWindow::on_Import_Theme_clicked()
 	QDir direct("themes/");
 		if (!direct.exists())
 			direct.mkpath(".");
+	QFileInfoList list = direct.entryInfoList();
+	int nb_files = list.size();
 	snprintf(new_place,8,"%s","themes/");
 	snprintf(c_str2,j+1,"%s",c_str2+i);
 	snprintf(new_place+7,8+j,"%s",c_str2);
 	QFile::copy(filename,new_place);
+
+	//a mettre dans une fonction générique 
+	//mieux de refresh car sinon faudrait le faire pour création theme et pour
+	//calc theme
+
+	/*QString i_inqstr;
+	//5 thèmes par ligne 
+	int column = (nb_files-2)%5;
+	int row = (nb_files-2)/5;
+	cout << nb_files << endl;
+	cout << row << endl;
+	i_inqstr = QString::number(nb_files-2);
+	QWidget *th3 = new QWidget(ui->Themes_list);
+	th3->setObjectName(QString::fromUtf8("th11"));
+	th3->setMaximumSize(QSize(1600, 200));
+	ThemeWidget *w1 = new ThemeWidget(th3);
+	w1->setTh_Widget(c_str2,12);
+	ui->gridLayout->addWidget(w1,row+1,column);*/
 }
 
 /**
@@ -504,6 +515,11 @@ void MainWindow::on_Import_Theme_clicked()
  * 		mais que nous pouvons en supprimer a tout moment
  * 		Tout les themes sauvegarder sont dans le bloc themes de l'appli
  *		Mais lors de l'importation on affiche aussi nos thèmes en stock dans le dossier associé 
+
+		Pour le moment notre importation ne modifie pas la sesion actuel. 
+		Le mieux est donc d'importer tout nos thèmes , de refresh puis 
+		enfin commencer a utilisé l'application 
+		Mais on peut faire la maj de suite si l'on veut à chaque import 
 */
 
 void MainWindow::on_Save_Theme_clicked()

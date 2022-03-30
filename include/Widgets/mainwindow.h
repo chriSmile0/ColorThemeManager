@@ -7,6 +7,7 @@
 #include <QTextStream>
 #include <QChar>
 #include <QLabel>
+#include "ThemeWidget.h"
 #include <QInputDialog>
 #include <string.h>
 #include <stdlib.h>
@@ -38,8 +39,3 @@ private:
 	Ui::MainWindow *ui;	
 };
 #endif // MAINWINDOW_H
-
-
-
-
-

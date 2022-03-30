@@ -3,6 +3,8 @@
     "files.associations": {
         "string_view": "cpp",
         "*.tcc": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "array": "cpp",
+        "string": "cpp"
     }
 }
