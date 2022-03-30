@@ -173,7 +173,7 @@ Précèdente</string>
       <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,2">
        <item>
         <widget class="QWidget" name="Themes_list" native="true">
-         <layout class="QGridLayout" name="gridLayout" rowstretch="1,0" columnstretch="0,0">
+         <layout class="QGridLayout" name="gridLayout" rowstretch="1" columnstretch="0,0">
           <property name="sizeConstraint">
            <enum>QLayout::SetDefaultConstraint</enum>
           </property>
@@ -188,7 +188,7 @@ Précèdente</string>
               <height>100</height>
              </size>
             </property>
-            <layout class="QVBoxLayout" name="th_1" stretch="1,1">
+            <layout class="QVBoxLayout" name="th_1" stretch="2,1">
              <property name="spacing">
               <number>0</number>
              </property>

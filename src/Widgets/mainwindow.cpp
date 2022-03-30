@@ -9,6 +9,45 @@ MainWindow::MainWindow(QWidget *parent)
 	
 {
 	ui->setupUi(this);
+	/*Chargement des thèmes*/
+	QDir direct("themes/");
+	if (!direct.exists())
+		direct.mkpath(".");
+	QFileInfoList list = direct.entryInfoList();
+	int nb_files = list.size();
+	for(int i = 2 ; i < nb_files ; i++) {
+		QFileInfo fileInfo = list.at(i);
+		cout << fileInfo.fileName().toStdString() << endl;
+	}
+	/*Attention a bien tout généraliser et a enlever le code inutile dans ui_mainwindow.h*/
+	QWidget *th3 = new QWidget(ui->Themes_list);
+    th3->setObjectName(QString::fromUtf8("th3"));
+    th3->setMaximumSize(QSize(100, 100));
+	QVBoxLayout *th_3 = new QVBoxLayout(th3);
+	th_3->setSpacing(0);
+	th_3->setObjectName(QString::fromUtf8("th_3"));
+	QWidget *widget_3 = new QWidget(th3);
+	widget_3->setObjectName(QString::fromUtf8("widget_3"));
+	QPushButton *pushButton = new QPushButton(widget_3);
+	pushButton->setObjectName(QString::fromUtf8("pushButton3"));
+	pushButton->setGeometry(QRect(18, 5, 50, 40));
+	QIcon icon3;
+    icon3.addFile(QString::fromUtf8(":/images/theme.png"), QSize(), QIcon::Normal, QIcon::Off);
+	pushButton->setIcon(icon3);
+	pushButton->setIconSize(QSize(32, 32));
+	th_3->addWidget(widget_3);
+	QLabel *label_4 = new QLabel(th3);
+	label_4->setObjectName(QString::fromUtf8("label_4"));
+	label_4->setAlignment(Qt::AlignCenter);
+	label_4->setText(QCoreApplication::translate("MainWindow", "NomTheme", nullptr));
+
+	th_3->addWidget(label_4);
+	th_3->setStretch(0, 2);
+	th_3->setStretch(2, 1);
+
+	ui->gridLayout->addWidget(th3, 1, 1, 1, 1);
+	//ui->horizontalLayout->addWidget(ui->Themes_list);
+
 }
 	
 
@@ -85,10 +124,12 @@ void MainWindow::on_Import_Color_File_clicked()
 		QFile::copy(filename,new_place);
 	}
 	else {//Message d'erreur
-		QMessageBox msgBox;
-		msgBox.setWindowTitle("Erreur fichier");
-		msgBox.setText("Choississez un fichier qui contient des couleurs , exemples : #rrggbbaa.");
-		msgBox.exec();
+		if(!filename.isNull()) {
+			QMessageBox msgBox;
+			msgBox.setWindowTitle("Erreur fichier");
+			msgBox.setText("Choississez un fichier qui contient des couleurs , exemples : #rrggbbaa.");
+			msgBox.exec();
+		}
 	}
 }
 
