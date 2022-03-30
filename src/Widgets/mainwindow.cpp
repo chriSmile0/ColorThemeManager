@@ -26,7 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
 	QString i_inqstr;
 	//5 thèmes par ligne 
 	int row = 0;
-	int column = 0;
 	for(int i = 0 ; i < list_size;i++) {
 		i_inqstr = QString::number(i+2);
 		QWidget *th3 = new QWidget(ui->Themes_list);
@@ -484,7 +483,6 @@ void MainWindow::on_Import_Theme_clicked()
 		if (!direct.exists())
 			direct.mkpath(".");
 	QFileInfoList list = direct.entryInfoList();
-	int nb_files = list.size();
 	snprintf(new_place,8,"%s","themes/");
 	snprintf(c_str2,j+1,"%s",c_str2+i);
 	snprintf(new_place+7,8+j,"%s",c_str2);
