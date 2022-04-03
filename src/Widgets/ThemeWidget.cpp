@@ -6,6 +6,7 @@ ThemeWidget::ThemeWidget(QWidget * parent)
 {
     this->setObjectName(QString::fromUtf8("th3"));
     this->setMaximumSize(QSize(1600, 120));
+    this->setMinimumSize(QSize(50,50));
 }
 
 void ThemeWidget::setTh_Widget(QString str,int id)

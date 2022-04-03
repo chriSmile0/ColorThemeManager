@@ -37,6 +37,11 @@ MainWindow::MainWindow(QWidget *parent)
 			row++;
 		ui->gridLayout->addWidget(w1,row,i%5);
 	}
+	int horizontal_size = list_size/5 * 100;
+	ui->Themes_list->setGeometry(QRect(0, 0, 557, horizontal_size));
+	
+	
+
 }
 	
 

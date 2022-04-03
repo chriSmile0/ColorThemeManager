@@ -8,6 +8,7 @@
 #include <QChar>
 #include <QLabel>
 #include "ThemeWidget.h"
+#include <QScrollArea>
 #include <QInputDialog>
 #include <string.h>
 #include <stdlib.h>
