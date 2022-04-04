@@ -5,8 +5,8 @@ ThemeWidget::ThemeWidget(QWidget * parent)
     :QWidget(parent)
 {
     this->setObjectName(QString::fromUtf8("th3"));
-    this->setMaximumSize(QSize(1600, 120));
-    this->setMinimumSize(QSize(50,50));
+    this->setMaximumSize(QSize(400, 100));
+    this->setMinimumSize(QSize(100,100));
 }
 
 void ThemeWidget::setTh_Widget(QString str,int id)
@@ -28,7 +28,7 @@ void ThemeWidget::setTh_Widget(QString str,int id)
     //Create button name
     pushButton = new QPushButton(widget_t);
     pushButton->setObjectName(QString::fromUtf8("pushButton12"));
-	pushButton->setGeometry(QRect(18, 5, 50, 40));
+	pushButton->setGeometry(QRect(25, 5, 50, 40));
     icon.addFile(QString::fromUtf8(":/images/theme.png"), QSize(), QIcon::Normal, QIcon::Off);
     pushButton->setIcon(icon);
 	pushButton->setIconSize(QSize(32, 32));
@@ -45,11 +45,11 @@ void ThemeWidget::setTh_Widget(QString str,int id)
     label = new QLabel(widget_c);
 	label->setObjectName(QString::fromUtf8("label_")+id_inqstr);
 	label->setAlignment(Qt::AlignCenter);
-    QByteArray ba = theme_name.toLocal8Bit();
+    /*QByteArray ba = theme_name.toLocal8Bit();
     const char *label_name = ba.data();
     QFontMetrics metrics(label->font());
-    QString elidedText = metrics.elidedText(label_name, Qt::ElideRight, label->width());
-	label->setText(elidedText);
+    QString elidedText = metrics.elidedText(label_name, Qt::ElideRight, label->width());*/
+	label->setText(theme_name);
 	th_3->addWidget(widget_c);
 
 }

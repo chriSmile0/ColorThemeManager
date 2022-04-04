@@ -173,48 +173,27 @@ Précèdente</string>
       <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,2">
        <item>
         <widget class="QScrollArea" name="scrollArea">
-         <property name="lineWidth">
-          <number>0</number>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QAbstractScrollArea::AdjustToContents</enum>
-         </property>
          <property name="widgetResizable">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <widget class="QWidget" name="Themes_list">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>557</width>
-            <height>500</height>
+            <width>571</width>
+            <height>320</height>
            </rect>
           </property>
-          <property name="minimumSize">
-           <size>
-            <width>300</width>
-            <height>300</height>
-           </size>
-          </property>
-          <widget class="QWidget" name="gridLayoutWidget">
-           <property name="geometry">
-            <rect>
-             <x>-10</x>
-             <y>0</y>
-             <width>571</width>
-             <height>321</height>
-            </rect>
-           </property>
-           <layout class="QGridLayout" name="gridLayout">
-            <property name="leftMargin">
-             <number>5</number>
-            </property>
-            <property name="topMargin">
-             <number>5</number>
-            </property>
-           </layout>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayout">
+             <property name="horizontalSpacing">
+              <number>3</number>
+             </property>
+            </layout>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -268,17 +247,11 @@ Précèdente</string>
                <height>221</height>
               </rect>
              </property>
-             <widget class="QWidget" name="verticalLayoutWidget">
-              <property name="geometry">
-               <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>211</width>
-                <height>221</height>
-               </rect>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_2"/>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_2"/>
+              </item>
+             </layout>
             </widget>
            </widget>
           </item>

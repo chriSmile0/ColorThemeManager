@@ -12,6 +12,7 @@
 #include <QInputDialog>
 #include <string.h>
 #include <stdlib.h>
+#include <QResizeEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,7 +34,7 @@ public slots:
 	int validation_source_target(QString source, QString target);
 	void on_Create_Theme_clicked();
 	void on_Import_Theme_clicked();
-	void on_Save_Theme_clicked();
+	void on_Save_Themes_clicked();
 	void on_Last_Session_clicked();
 
 private:

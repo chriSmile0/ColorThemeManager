@@ -24,27 +24,16 @@ MainWindow::MainWindow(QWidget *parent)
 	}
 	int list_size = files_names.size();
 	QString i_inqstr;
-	//5 thèmes par ligne 
 	int row = 0;
 	for(int i = 0 ; i < list_size;i++) {
-		i_inqstr = QString::number(i+2);
-		QWidget *th3 = new QWidget(ui->Themes_list);
-		th3->setObjectName(QString::fromUtf8("th")+i_inqstr);
-		th3->setMaximumSize(QSize(1600, 200));
-		ThemeWidget *w1 = new ThemeWidget(th3);
+		ThemeWidget *w1 = new ThemeWidget(ui->Themes_list);
 		w1->setTh_Widget(files_names[i],i+2);
 		if((i%5 == 0) && (i!=0))
 			row++;
 		ui->gridLayout->addWidget(w1,row,i%5);
 	}
-	int horizontal_size = list_size/5 * 100;
-	ui->Themes_list->setGeometry(QRect(0, 0, 557, horizontal_size));
-	
-	
-
 }
 	
-
 MainWindow::~MainWindow()
 {
 	delete ui;
@@ -525,7 +514,7 @@ void MainWindow::on_Import_Theme_clicked()
 		Mais on peut faire la maj de suite si l'on veut à chaque import 
 */
 
-void MainWindow::on_Save_Theme_clicked()
+void MainWindow::on_Save_Themes_clicked()
 {
 	QFileDialog::getSaveFileName(this,
     tr("Sauvegarder"), "/home", tr("Themes Files (*.xml)"));
