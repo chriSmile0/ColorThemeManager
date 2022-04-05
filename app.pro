@@ -33,12 +33,14 @@ VPATH += $${SRC_DIR} $${SRC_WIDGETS_DIR} $${INCLUDE_DIR} $${INCLUDE_WIDGETS_DIR}
 SOURCES += \
 	mainwindow.cpp \
         ThemeWidget.cpp \
+        ThemeActionsWidget.cpp \
         main.cpp \
         ColorPair.cpp \
 
 HEADERS += \
         mainwindow.h \
         ThemeWidget.h \
+        ThemeActionsWidget.h \
         ColorPair.h \
 
 

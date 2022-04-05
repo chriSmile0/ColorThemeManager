@@ -39,11 +39,20 @@
     </size>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout" stretch="2,5">
+    <property name="spacing">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QWidget" name="Top" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,3,3,3,3,3,3">
        <property name="sizeConstraint">
         <enum>QLayout::SetNoConstraint</enum>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>3</number>
        </property>
        <item>
         <widget class="QPushButton" name="Import_Color_File">
@@ -171,6 +180,12 @@ Précèdente</string>
     <item>
      <widget class="QWidget" name="Bottom" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout" stretch="5,2">
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
        <item>
         <widget class="QScrollArea" name="scrollArea">
          <property name="widgetResizable">
@@ -182,7 +197,7 @@ Précèdente</string>
             <x>0</x>
             <y>0</y>
             <width>571</width>
-            <height>320</height>
+            <height>338</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
@@ -244,7 +259,7 @@ Précèdente</string>
                <x>0</x>
                <y>0</y>
                <width>209</width>
-               <height>221</height>
+               <height>235</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">

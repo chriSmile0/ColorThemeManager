@@ -1,5 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "ThemeWidget.h"
+#include "ThemeActionsWidget.h"
 #include "ui_mainwindow.h"
 #include <iostream>
 using namespace std;
@@ -12,6 +13,11 @@ MainWindow::MainWindow(QWidget *parent)
 	ui->setupUi(this);
 	/*Chargement des thèmes*/
 	QDir direct("themes/");
+	ThemeActionsWidget *taw = new ThemeActionsWidget(ui->centralwidget);
+	taw->hide();
+	ui->verticalLayout->addWidget(taw);
+	//taw->actions_widget->setStyleSheet("border: 1px solid black");
+	
 	if (!direct.exists())
 		direct.mkpath(".");
 	QFileInfoList list = direct.entryInfoList();
@@ -28,6 +34,17 @@ MainWindow::MainWindow(QWidget *parent)
 	for(int i = 0 ; i < list_size;i++) {
 		ThemeWidget *w1 = new ThemeWidget(ui->Themes_list);
 		w1->setTh_Widget(files_names[i],i+2);
+		QObject::connect(w1->pushButton, &QPushButton::clicked ,[=]() {
+			if(!taw->isVisible()) {
+				taw->show();
+				ui->verticalLayout->setStretch(0,1);
+				ui->verticalLayout->setStretch(1,3);
+				ui->verticalLayout->setStretch(2,3);
+				ui->verticalLayout->addStretch(1);
+				
+			}
+			taw->title_widget->setText("Action sur le thème "+w1->label->text());
+    	});
 		if((i%5 == 0) && (i!=0))
 			row++;
 		ui->gridLayout->addWidget(w1,row,i%5);
@@ -514,7 +531,7 @@ void MainWindow::on_Import_Theme_clicked()
 		Mais on peut faire la maj de suite si l'on veut à chaque import 
 */
 
-void MainWindow::on_Save_Themes_clicked()
+void MainWindow::on_Save_Theme_clicked()
 {
 	QFileDialog::getSaveFileName(this,
     tr("Sauvegarder"), "/home", tr("Themes Files (*.xml)"));
