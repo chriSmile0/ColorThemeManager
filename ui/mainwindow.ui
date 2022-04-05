@@ -130,7 +130,7 @@ Thème</string>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="Save_Theme">
+        <widget class="QPushButton" name="Save_Themes">
          <property name="maximumSize">
           <size>
            <width>16777215</width>

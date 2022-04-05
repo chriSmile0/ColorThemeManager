@@ -29,12 +29,12 @@ public:
 public slots:
 	void on_Import_Color_File_clicked();
 	void on_Calc_Theme_clicked();
-	QString create_line_source_target(QString &source,QString &target, int id);
-	QString create_theme_line(QString &str, int id);
-	int validation_source_target(QString source, QString target);
+	static QString create_line_source_target(QString &source,QString &target, int id);
+	static QString create_theme_line(QString &str, int id);
+	static int validation_source_target(QString source, QString target);
 	void on_Create_Theme_clicked();
 	void on_Import_Theme_clicked();
-	void on_Save_Theme_clicked();
+	void on_Save_Themes_clicked();
 	void on_Last_Session_clicked();
 
 private:

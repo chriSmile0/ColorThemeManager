@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
 				ui->verticalLayout->setStretch(1,3);
 				ui->verticalLayout->setStretch(2,3);
 				ui->verticalLayout->addStretch(1);
+				QMetaObject::connectSlotsByName(parent);
 				
 			}
 			taw->title_widget->setText("Action sur le thème "+w1->label->text());
@@ -139,9 +140,7 @@ QString MainWindow::create_line_source_target(QString &source,QString &target, i
 	QString add_id("");
 	QString couleur(source);
 	QString cible(target);
-	if(id < 10) 
-		add_id += "0";
-	add_id += '0' + id;
+	add_id = QString::number(id);
 	QString strin("    <color id=");
 	strin += '"';
 	strin += "Couleur ";
@@ -531,7 +530,7 @@ void MainWindow::on_Import_Theme_clicked()
 		Mais on peut faire la maj de suite si l'on veut à chaque import 
 */
 
-void MainWindow::on_Save_Theme_clicked()
+void MainWindow::on_Save_Themes_clicked()
 {
 	QFileDialog::getSaveFileName(this,
     tr("Sauvegarder"), "/home", tr("Themes Files (*.xml)"));
