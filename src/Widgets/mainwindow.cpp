@@ -495,6 +495,13 @@ void MainWindow::on_Import_Theme_clicked()
 	QFileInfoList list = direct.entryInfoList();
 	snprintf(new_place,8,"%s","themes/");
 	snprintf(c_str2,j+1,"%s",c_str2+i);
+	QFile links("links");
+	if(links.open(QIODevice::Append)) {
+       	QTextStream oute(&links);
+        oute << c_str2 << Qt::endl;
+        links.close();
+	}
+
 	snprintf(new_place+7,8+j,"%s",c_str2);
 	QFile::copy(filename,new_place);
 

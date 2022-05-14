@@ -42,6 +42,7 @@ class ThemeActionsWidget : public QWidget
         void on_Color_Modify_clicked();//next
         void on_Application_Theme_On_Dr_File_clicked();//end
         QString find_color(int id,int id_max,QString line);
+        int compare_string(QString str1,QString str2);
 
 
     private:

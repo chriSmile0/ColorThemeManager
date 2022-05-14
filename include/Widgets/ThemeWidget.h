@@ -25,6 +25,7 @@ class ThemeWidget : public QWidget
         QLabel *label;
         QLabel *hide_label;
         QString theme_name;
+        QUrl *url_theme;
         int id;
 
         ThemeWidget(QWidget * parent = nullptr);

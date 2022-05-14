@@ -4,14 +4,13 @@
 ThemeWidget::ThemeWidget(QWidget * parent) 
     :QWidget(parent)
 {
-    this->setObjectName(QString::fromUtf8("th3"));
     this->setMaximumSize(QSize(400, 100));
     this->setMinimumSize(QSize(100,100));
 }
 
 void ThemeWidget::setTh_Widget(QString str,int id)
 {
-
+    
     theme_name = str;
     id = id;
     QString id_inqstr = QString::number(id);
@@ -19,7 +18,6 @@ void ThemeWidget::setTh_Widget(QString str,int id)
     //Create VBoxLayout name
     th_3 = new QVBoxLayout(this);
     th_3->setSpacing(0);
-	th_3->setObjectName(QString::fromUtf8("th_3"));
     //Create Widget name
     widget_t =  new QWidget(this);
 	widget_t->setObjectName(QString::fromUtf8("widget_t"));
@@ -50,6 +48,8 @@ void ThemeWidget::setTh_Widget(QString str,int id)
     QFontMetrics metrics(label->font());
     QString elidedText = metrics.elidedText(label_name, Qt::ElideRight, label->width());*/
 	label->setText(theme_name);
+    this->setObjectName("th"+theme_name);
+    th_3->setObjectName("th_"+theme_name);
 	th_3->addWidget(widget_c);
 
 }

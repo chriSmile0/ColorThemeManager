@@ -92,10 +92,98 @@ void ThemeActionsWidget::on_Save_Theme_clicked()
 void ThemeActionsWidget::on_Maj_Imp_Link_Theme_clicked() 
 {
     //Attribuer un url a un themewidget
+    //faire un tableau de qurl dans l'appli
 }
+
+int ThemeActionsWidget::compare_string(QString str1,QString str2)//line , file
+{
+    int size_str1 = str1.length();
+    int size_str2 = str2.length();
+    int cpt = 0;
+    QChar c1;
+    QChar c2;
+    char ch1;
+    char ch2;
+    int i = 0;
+    for(i = 0 ; (i < size_str2) && (i < size_str1);i++) { 
+        ch1 = str1[i].toLatin1();
+        ch2 = str2[i].toLatin1();
+        cout << ch1 << "," << ch2 << endl;
+        if(ch1 == ch2) 
+            cpt++;
+    }
+    for(int i = size_str2 ; i < size_str1 ;i++) {
+        ch2 = str1[size_str2].toLatin1();
+        if(ch2 != ' ')
+            cpt = -1;
+    }
+    return cpt;
+}
+
+//pas de lien de plus de 500 caracteres
 void ThemeActionsWidget::on_Link_Modify_clicked() 
 {
+    //fonctionne
     //Changer l'url de themewidget
+    //search file
+    QString str = title_widget->text();
+    QString file("");
+    int size = str.length();
+    int j = size;
+    for(j = size-1 ; j > 0 && (str[j] != ' ') ;j--);
+    for(j=j+1; j < size; j++) 
+        file += str[j];
+    //end search file
+    cout << file.toStdString() << endl;
+
+
+    QDialog *Dbox = new QDialog();
+    Dbox->setWindowTitle("Modification du lien du thème");
+    QVBoxLayout *vlayout = new QVBoxLayout;
+    QVBoxLayout *v_fields_layout = new QVBoxLayout;
+    Dbox->setFixedSize(280,150);
+    QLabel *link = new QLabel(tr("Nouveau lien du thème : "));
+    QLineEdit *field_link = new QLineEdit();
+    QPushButton *valider = new QPushButton("Valider lien");
+    vlayout->setSpacing(20);
+    v_fields_layout->addWidget(link);
+    v_fields_layout->addWidget(field_link);
+    v_fields_layout->setAlignment(link,Qt::AlignHCenter);
+    v_fields_layout->setSpacing(0);
+    vlayout->addLayout(v_fields_layout);
+    vlayout->addWidget(valider);
+    Dbox->setLayout(vlayout);
+    Dbox->show();
+    QObject::connect(valider, &QPushButton::clicked ,[=]() {
+        QFile links("links");
+        int taille_last_line = 0;
+        QString save_line("");
+        if(links.open(QIODevice::ReadWrite)) {
+            QTextStream in(&links);
+            int goon = 1;
+            QString line;
+            while ((!in.atEnd()) && (goon)) {
+                line = in.readLine();
+                int compare = 0;
+                if((compare =compare_string(line,file)) > 0) {
+                    goon = 0;
+                    taille_last_line += compare;
+                    line = file;
+                }
+                else {
+                    taille_last_line += line.length();
+                }
+            }
+        }
+        links.close();
+        if(links.open(QIODevice::ReadWrite | QIODevice::Text)) {
+            QTextStream oute(&links);
+            links.seek(taille_last_line);
+            oute << " :" << field_link->text() << Qt::endl;
+        }
+        links.close();
+        Dbox->close();
+    });
 }
 
 QString ThemeActionsWidget::find_color(int id,int id_max,QString line)
@@ -325,6 +413,8 @@ void ThemeActionsWidget::on_Color_Modify_clicked()
     //Tant que l'utilisateur le désir il peut modifier
     //les couleurs d'un fichier .xml
     //Reprendre l'idée de la création des couleurs dans mainwindow.cpp
+
+    //************************************************CELUI CI MTN***********
 }
 void ThemeActionsWidget::on_Application_Theme_On_Dr_File_clicked()
 {
