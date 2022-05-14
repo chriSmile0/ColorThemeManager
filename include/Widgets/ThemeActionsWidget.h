@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QtCore>
 #include <QCoreApplication>
+#include <QSpinBox>
 #include "mainwindow.h" //for create line theme and ...
 #include <iostream>
 using namespace std;
@@ -36,10 +37,11 @@ class ThemeActionsWidget : public QWidget
         void on_Save_Theme_clicked();
         void on_Maj_Imp_Link_Theme_clicked();
         void on_Link_Modify_clicked();
-        void on_Add_Color_clicked();
-        void on_Show_Pair_Source_Target_clicked();
-        void on_Color_Modify_clicked();
-        void on_Application_Theme_On_Dr_File_clicked();
+        void on_Add_Color_clicked();//check
+        void on_Show_Pair_Source_Target_clicked();//step 2
+        void on_Color_Modify_clicked();//next
+        void on_Application_Theme_On_Dr_File_clicked();//end
+        QString find_color(int id,int id_max,QString line);
 
 
     private:

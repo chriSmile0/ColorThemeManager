@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 				QMetaObject::connectSlotsByName(parent);
 				
 			}
-			taw->title_widget->setText("Action sur le thème "+w1->label->text());
+			taw->title_widget->setText("Actions sur le thème "+w1->label->text());
     	});
 		if((i%5 == 0) && (i!=0))
 			row++;

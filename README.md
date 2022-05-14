@@ -1,5 +1,5 @@
 Dans ce commit vous trouverez : 
-    - Ajout de la fonctionnalité ajout couleur dans un thème
+    - Ajout de la fonctionnalité qui permet de voir les pairs de couleurs du fichier
     
 Dans le prochain commit on y trouvera :
     - Ajout des dernières fonctionnalités 

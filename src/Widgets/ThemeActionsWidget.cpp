@@ -21,6 +21,7 @@ ThemeActionsWidget::ThemeActionsWidget(QWidget * parent)
     saves->setObjectName(QString::fromUtf8("Save_Theme"));
     QObject::connect(saves, &QPushButton::clicked ,[=] {
         this->on_Save_Theme_clicked();
+        cout << this->parent()->objectName().toStdString() << endl;
     });
     saves->setMinimumSize(QSize(0,70));
     saves->setMaximumSize(QSize(1600,100));
@@ -95,6 +96,43 @@ void ThemeActionsWidget::on_Maj_Imp_Link_Theme_clicked()
 void ThemeActionsWidget::on_Link_Modify_clicked() 
 {
     //Changer l'url de themewidget
+}
+
+QString ThemeActionsWidget::find_color(int id,int id_max,QString line)
+{
+    int size_line = line.length();
+    int decal = 1;
+    if(id_max >= 10) {
+        decal++;
+        if(id_max >= 100) {
+            decal++;
+            if(id_max >= 1000)
+                decal++;
+        }
+    }
+
+    QString decal_str = "";
+    for(int i = 0 ; i < decal ; i++)
+        decal_str += ' ';
+    QString src(decal_str+"  source : ");
+    QString tgt("");
+    int j = size_line;
+    cout << j << endl;
+    for(j = 0; j < size_line && (line[j] != '#') ;j++) ;
+    int i = j;
+    for(i = j; i < size_line  && (line[i] != '"') ; i++) 
+        src += line[i];
+
+    int cpt_autre_decal = 8-(i-j);
+    for(int k = 0 ; k < cpt_autre_decal;k++)
+        src += ' ';
+    src += "  cible : ";
+
+    for(j = 0; j < size_line && (line[j] != '#') ;j++) ;
+    for(i = j; i < size_line  && (line[i] != '"') ; i++)
+        src += line[i];
+    
+    return src;
 }
 
 void ThemeActionsWidget::on_Add_Color_clicked() 
@@ -181,6 +219,106 @@ void ThemeActionsWidget::on_Show_Pair_Source_Target_clicked()
 {
     //ouvrir le fichier et le lire dans une QDialog ?
     //ou un minimum de mise en page
+    //demander le nombre de couleurs a voir 
+    //installer une scrollbar dans la fenêtre de vision
+    // ou afficher dans la fenêtre de la partie de l'ihm
+
+    //on part d'abord sur la fenêtre de dialogue
+    QDir direct("themes/");
+    //search file
+    QString str = title_widget->text();
+    QString file("");			
+    int size = str.length();
+    int j = size;
+    for(j = size-1 ; j > 0 && (str[j] != ' ') ;j--);
+    for(j=j+1; j < size; j++) 
+        file += str[j];
+    //end search file
+    QFile outputFile("./themes/"+file);
+    int id = 0;
+    if(outputFile.open(QIODevice::ReadOnly)) {
+       	QTextStream in(&outputFile);
+		while (!in.atEnd()) {
+			QString line = in.readLine();
+            id++;
+        }
+    }
+    outputFile.close();
+
+    QDialog *Dbox = new QDialog();
+    Dbox->setWindowTitle("Voir paires de couleurs");
+    QVBoxLayout *vlayout = new QVBoxLayout;
+    Dbox->setFixedSize(200,150);
+    QHBoxLayout *hlayout = new QHBoxLayout;
+    QLabel *nb_colors_to_see = new QLabel("Nombre de couleurs : \n(maximum = "+QString::number((id-2))+")");
+    QSpinBox *field_nb_colors = new QSpinBox();
+    field_nb_colors->setMinimum(1);
+    field_nb_colors->setMaximum(id-2);
+    //QWidget *wid_hlayout = QWidget(hlayout);
+    QPushButton *valider = new QPushButton("Valider choix");
+    hlayout->addWidget(nb_colors_to_see);
+    hlayout->addWidget(field_nb_colors);
+    vlayout->addLayout(hlayout);
+    vlayout->addWidget(valider);
+    Dbox->setLayout(vlayout);
+    Dbox->show();
+
+
+    QObject::connect(valider, &QPushButton::clicked ,[=]() {
+        //Verification des champs a faire venir d'une autre fonction plus haut //
+        Dbox->close();
+        //Pour mettre dans le QLayout a droit de l'ihm 
+        /*QLabel *lol = new QLabel("ok");
+        
+        /QList<QLayout*> subwidgets = this->parent()->parent()->findChildren<QLayout*>();
+        QListIterator<QLayout*> it(subwidgets); // iterate through the list of widgets
+        QLayout *awiget;
+
+        while (it.hasNext()) {//find child
+            awiget = it.next(); // take each widget in the list
+            cout << awiget->objectName().toStdString() << endl;
+            if(awiget->objectName() == "verticalLayout_2") {
+                cout << "okkkkkk" << endl;
+                awiget->addWidget(lol);
+            }
+        }*/
+        cout << field_nb_colors->value() << endl;
+        QDialog *dialBox = new QDialog();
+        dialBox->setWindowTitle("Paires");
+        dialBox->setFixedSize(420,300);
+        QVBoxLayout *horizontalLayout = new QVBoxLayout(dialBox);
+        QScrollArea *scrollArea = new QScrollArea(dialBox);
+        scrollArea->setWidgetResizable(true);
+        QWidget * w = new QWidget();
+        w->setGeometry(QRect(0, 0, 420, 300));
+        QVBoxLayout *v_box_layout_2 = new QVBoxLayout(w);
+        QVBoxLayout *v_box_layout = new QVBoxLayout();
+        v_box_layout->setSpacing(1);
+
+        v_box_layout_2->addLayout(v_box_layout);
+        scrollArea->setWidget(w);
+        horizontalLayout->addWidget(scrollArea);
+       
+
+        QFile outputFile("./themes/"+file);
+        int id_color = 0;
+        QString tgt = "";
+        QString src = "";
+        int stop = field_nb_colors->value()+1;
+        if(outputFile.open(QIODevice::ReadOnly)) {
+            QTextStream in(&outputFile);
+            while (id_color < stop) {
+                QString line = in.readLine();
+                if(id_color > 0) {
+                    QLabel *color = new QLabel("couleur : "+QString::number((id_color))+find_color(id_color,(id-2),line));
+                    v_box_layout->addWidget(color);
+                }
+                id_color++;
+            }
+        }
+        outputFile.close();
+        dialBox->show();
+    });
 }
 void ThemeActionsWidget::on_Color_Modify_clicked() 
 {
