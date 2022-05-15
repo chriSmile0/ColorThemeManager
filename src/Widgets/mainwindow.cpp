@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
 	ThemeActionsWidget *taw = new ThemeActionsWidget(ui->centralwidget);
 	taw->hide();
 	ui->verticalLayout->addWidget(taw);
-	//taw->actions_widget->setStyleSheet("border: 1px solid black");
+	//taw->actions_widget->setStyleSheet("border: 1px solid black")
 	
 	if (!direct.exists())
 		direct.mkpath(".");
@@ -138,10 +138,13 @@ void MainWindow::on_Import_Color_File_clicked()
 QString MainWindow::create_line_source_target(QString &source,QString &target, int id) {
 	//QString str("<color id="Couleur 01" source="#003265ff" target="#123225ff"/>")
 	QString add_id("");
+	if(id < 10) 
+		add_id += "0";
+	add_id += '0' + id;
 	QString couleur(source);
 	QString cible(target);
-	add_id = QString::number(id);
-	QString strin("    <color id=");
+	//add_id = QString::number(id);
+	QString strin(" <color id=");
 	strin += '"';
 	strin += "Couleur ";
 	strin += add_id;

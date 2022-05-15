@@ -54,6 +54,7 @@ class ColorPairSet {
         ColorPairSet();
         SetType &set(int x);
         void add_in_set(ColorPair &cp);
+        QString in_set(const QString &colorStr);
 
     private:
         SetType m_set;
@@ -72,6 +73,7 @@ class XMLReader {
         void read(const QString &filename);
         void read_xml(QDomElement elem);
         void set_cps(int x);
+        ColorPairSet get_cps();
 };
 
 

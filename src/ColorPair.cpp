@@ -19,9 +19,9 @@ ColorPair::ColorPair(const QString &id) {
     m_id = id;
 }//con. initialisant uniquement l’identifiant
 
-QString toRGBA(const QColor &color) {
+QString toRGBA(const QColor &color) {//ici on pourrais changer pour gerer le rrggbb
     QString str;
-    str = color.name();
+    str = color.name(QColor::HexArgb);
     return str;
 }
 
@@ -78,18 +78,21 @@ ColorPairSet::SetType &ColorPairSet::set(int x) {
             qDebug() << cp.get_m_color2();
         }   
     }
-
-    //parcours du set old school
-    /*SetType::const_iterator it = m_set.begin();
-    for(it ; it!=m_set.end();++it)
-        const ColorPair &cp = (*it);*/
-
     return m_set;
 }
 
 void ColorPairSet::add_in_set(ColorPair &cp) {
     m_set.insert(cp);
 }
+
+QString ColorPairSet::in_set(const QString &colorStr) {//on extrait la target
+    for(const ColorPair &cp : m_set) {
+        if(toRGBA(cp.get_m_color1()) == colorStr)
+            return toRGBA(cp.get_m_color2());
+    }
+    return "";
+}
+
 
 
 XMLReader::XMLReader() {}
@@ -135,6 +138,12 @@ void XMLReader::read(const QString &filename) {
 }
 
 
+
+
 void XMLReader::set_cps(int x) {
     cps.set(x);
+}
+
+ColorPairSet XMLReader::get_cps() {
+    return cps;
 }
